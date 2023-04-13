@@ -6,12 +6,17 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+import * as url from 'url';
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
 const PORT = 3000;
 
+app.use(express.static(__dirname + '/src'));
 app.use(morgan('short'));
 
 app.get('/', (req, res) => {
-    res.send('Hello world!');
+
 });
 
 server.listen(PORT, () => {
